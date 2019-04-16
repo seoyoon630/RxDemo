@@ -13,7 +13,7 @@ import kotlin.collections.ArrayList
  * 생성 연산자
  */
 class CreatingObservables {
-    private val arrayData = arrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+    private val arrayData = arrayOf(1, 2, 3, 4, 5)
     private val data = ArrayList<Int>()
 
     fun test() {
@@ -23,9 +23,9 @@ class CreatingObservables {
         timerTest()
         createTest()
         justTest()
+        fromCallableTest()
         fromArrayTest()
         fromIterableTest()
-        fromCallableTest()
         rangeTest()
         repeatTest()
     }
@@ -56,11 +56,7 @@ class CreatingObservables {
             emitter.onNext(3)
             emitter.onNext(4)
             emitter.onNext(5)
-            emitter.onNext(6)
-            emitter.onNext(7)
-            emitter.onNext(8)
-            emitter.onNext(9)
-            emitter.onNext(10)
+            // emitter.onError(Throwable())
             emitter.onComplete()
         })
             .subscribe(UnitObserver(subject))
@@ -69,20 +65,22 @@ class CreatingObservables {
     fun justTest() {
         val subject = "just"
         Util.showStartTime(subject)
-        Observable.just(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        Observable.just(1, 2, 3, 4, 5)
             .subscribe(UnitObserver(subject))
     }
 
     fun fromArrayTest() {
         val subject = "fromArray"
         Util.showStartTime(subject)
-        Observable.fromArray(arrayData)
+        Observable.fromArray(arrayOf(1, 2, 3, 4, 5))
             .subscribe(UnitObserver(subject))
     }
 
     fun fromIterableTest() {
         val subject = "fromIterable"
         Util.showStartTime(subject)
+        val data = ArrayList<Int>()
+        data.addAll(arrayOf(1, 2, 3, 4, 5))
         Observable.fromIterable(data)
             .subscribe(UnitObserver(subject))
     }
@@ -97,20 +95,19 @@ class CreatingObservables {
             }
         })
             .subscribe(UnitObserver(subject))
-//            .subscribe(UnitIteratorObserver(subject) as Observer<in ArrayList<Int>>)
     }
 
     fun rangeTest() {
         val subject = "range"
         Util.showStartTime(subject)
-        Observable.range(1, 10)
+        Observable.range(1, 5)
             .subscribe(UnitObserver(subject))
     }
 
     fun intervalRangeTest() {
         val subject = "intervalRange"
         Util.showStartTime(subject)
-        Observable.intervalRange(1, 9, 0, 10, TimeUnit.MILLISECONDS)
+        Observable.intervalRange(1, 5, 0, 10, TimeUnit.MILLISECONDS)
             .map { data -> (data * 100).toInt() }
             .subscribe(UnitObserver(subject))
     }
@@ -130,12 +127,12 @@ class CreatingObservables {
         deferObserver.subscribe(UnitObserver(subject))
     }
 
-    fun repeatTest(){
+    fun repeatTest() {
         val subject = "repeat"
         Util.showStartTime(subject)
 
-        Observable.fromArray(arrayData)
-            .repeat(4)  // empty parameter : infinitely repeat
+        Observable.fromArray(arrayOf(1,2,3))
+            .repeat(2)  // empty parameter : infinitely repeat
             .subscribe(UnitObserver(subject))
     }
 }

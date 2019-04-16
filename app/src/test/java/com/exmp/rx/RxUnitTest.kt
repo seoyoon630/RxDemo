@@ -8,7 +8,7 @@ import org.junit.Test
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class RxExampletest {
+class RxUnitTest {
 
     @Test
     fun singleTest() {
@@ -62,6 +62,12 @@ class RxExampletest {
     fun transformingObservables() {
         val test = TransformingObservables()
         test.test()
+    }
+
+    @Test
+    fun reduceTest() {
+        val test = TransformingObservables()
+        test.reduceTest()
     }
 
     @Test

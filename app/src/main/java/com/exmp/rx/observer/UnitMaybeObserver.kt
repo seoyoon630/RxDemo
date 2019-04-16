@@ -6,11 +6,22 @@ import io.reactivex.disposables.Disposable
 
 class UnitMaybeObserver(var subject: String = "") : MaybeObserver<Any> {
     override fun onSubscribe(d: Disposable) {
-        System.out.println("$subject onSubscribe!")
     }
 
     override fun onSuccess(data: Any) {
-        System.out.println("$subject onNext : $data")
+        when (data) {
+            is ArrayList<*> -> {
+                val it = data.iterator()
+                while (it.hasNext()) {
+                    val d = it.next()
+                    System.out.println("$subject onSuccess : $d")
+                }
+            }
+            is Array<*> -> for (d in data) {
+                System.out.println("$subject onSuccess : $d")
+            }
+            else -> System.out.println("$subject onSuccess : $data")
+        }
     }
 
     override fun onComplete() {

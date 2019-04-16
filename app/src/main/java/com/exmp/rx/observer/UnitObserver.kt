@@ -5,12 +5,7 @@ import io.reactivex.disposables.Disposable
 
 class UnitObserver(var subject: String = "") : Observer<Any?> {
 
-    override fun onComplete() {
-        System.out.println("$subject onComlete!")
-    }
-
     override fun onSubscribe(d: Disposable) {
-        System.out.println("$subject onSubscribe!")
     }
 
     override fun onNext(data: Any) {
@@ -27,6 +22,10 @@ class UnitObserver(var subject: String = "") : Observer<Any?> {
             }
             else -> System.out.println("$subject onNext : $data")
         }
+    }
+
+    override fun onComplete() {
+        System.out.println("$subject onComlete!")
     }
 
     override fun onError(e: Throwable) {

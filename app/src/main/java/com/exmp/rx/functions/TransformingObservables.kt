@@ -3,6 +3,7 @@ package com.exmp.rx.functions
 import com.exmp.rx.Util
 import com.exmp.rx.observer.UnitMaybeObserver
 import com.exmp.rx.observer.UnitObserver
+import io.reactivex.Maybe
 import io.reactivex.Observable
 import java.util.concurrent.TimeUnit
 
@@ -21,9 +22,7 @@ class TransformingObservables {
     fun mapTest() {
         val subject = "map"
         Util.showStartTime(subject)
-        Observable.just(
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-        )
+        Observable.just(1, 2, 3, 4, 5)
             .map { item -> item + 10 }
             .subscribe(UnitObserver(subject))
     }
@@ -31,9 +30,7 @@ class TransformingObservables {
     fun flatMapTest() {
         val subject = "flatMap"
         Util.showStartTime(subject)
-        Observable.just(
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-        )
+        Observable.just(1, 2, 3, 4, 5)
             .flatMap { Observable.just(it + 10, it + 20, it + 30) }
             .subscribe(UnitObserver(subject))
     }
@@ -106,11 +103,12 @@ class TransformingObservables {
 
     fun reduceTest() {
         val subject = "reduce"
-        Observable.just(
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-        )
+
+//        val observable: Maybe<Int> = Observable.just(1)
+//            .filter { it > 1 }
+        val observable: Maybe<Int> = Observable.just(1,2,3,4,5)
             .reduce { item1, item2 -> item1 * item2 }
-            .subscribe(UnitMaybeObserver(subject))
+        observable.subscribe(UnitMaybeObserver(subject))
     }
 
     // reduce scan 차이점
@@ -119,9 +117,7 @@ class TransformingObservables {
     // scan은 값이 입력될 때마다 구독자에게 값을 발행
     fun scanTest() {
         val subject = "scan"
-        Observable.just(
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-        )
+        Observable.just(1, 2, 3, 4, 5)
             .scan { item1, item2 -> item1 * item2 }
             .subscribe(UnitObserver(subject))
     }
