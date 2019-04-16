@@ -45,6 +45,7 @@ class RxExampletest {
         val test = Example()
         test.sales()
     }
+
     @Test
     fun creatingObservables() {
         val test = CreatingObservables()
@@ -62,19 +63,28 @@ class RxExampletest {
         val test = TransformingObservables()
         test.test()
     }
+
     @Test
     fun concatMapTest() {
         val test = TransformingObservables()
         test.concatMapTest()
     }
+
     @Test
     fun switchMapTest() {
         val test = TransformingObservables()
         test.switchMapTest()
     }
+
     @Test
     fun groupByTest() {
         val test = TransformingObservables()
         test.groupByTest()
+    }
+
+    @Test
+    fun combiningObservables() {
+        val test = CombiningObservables()
+        test.test()
     }
 }
