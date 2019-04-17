@@ -81,5 +81,4 @@ class RxUnitTest {
         val test = CombiningObservables()
         test.test()
     }
-
 }

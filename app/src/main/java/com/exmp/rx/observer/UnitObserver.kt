@@ -30,6 +30,9 @@ class UnitObserver(var subject: String = "") : Observer<Any?> {
     }
 
     override fun onError(e: Throwable) {
-        System.out.println("$subject onError : ${e.message}\n${e.stackTrace}")
+        System.out.println("$subject onError : ${e.message}\n")
+        for (stackTraceElement in e.stackTrace) {
+            System.out.println("$stackTraceElement")
+        }
     }
 }
