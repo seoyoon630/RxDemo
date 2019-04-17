@@ -19,25 +19,7 @@ class RxUnitTest {
     @Test
     fun gugudan() {
         val gugudan = Example()
-        gugudan.createGugudan(2)
-    }
-
-    @Test
-    fun gugudan2() {
-        val gugudan = Example()
-        gugudan.createGugudan2(2)
-    }
-
-    @Test
-    fun gugudan3() {
-        val gugudan = Example()
-        gugudan.createGugudan3()
-    }
-
-    @Test
-    fun filter() {
-        val test = FilterTest()
-        test.test()
+        gugudan.createGugudan()
     }
 
     @Test
@@ -89,8 +71,15 @@ class RxUnitTest {
     }
 
     @Test
+    fun filteringObservables() {
+        val test = FilteringObservables()
+        test.test()
+    }
+
+    @Test
     fun combiningObservables() {
         val test = CombiningObservables()
         test.test()
     }
+
 }

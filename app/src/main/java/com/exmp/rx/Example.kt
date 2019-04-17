@@ -10,19 +10,7 @@ class Example {
     val gugudan = "gugudan"
     val sales = "sales"
 
-    fun createGugudan(input: Int) {
-        for (i in 1..9) {
-            System.out.println("$input * $i = ${input * i}")
-        }
-    }
-
-    fun createGugudan2(input: Int) {
-        val observable = Observable.range(1, 9)
-            .map { "$input * $it = ${input * it}" }
-        observable.subscribe(UnitObserver(gugudan))
-    }
-
-    fun createGugudan3() {
+    fun createGugudan() {
         val observable = Observable.range(1, 9)
         observable
             .flatMap { num1 ->

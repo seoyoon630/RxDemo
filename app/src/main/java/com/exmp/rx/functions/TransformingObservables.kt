@@ -30,8 +30,8 @@ class TransformingObservables {
     fun flatMapTest() {
         val subject = "flatMap"
         Util.showStartTime(subject)
-        Observable.just(1, 2, 3, 4, 5)
-            .flatMap { Observable.just(it + 10, it + 20, it + 30) }
+        Observable.just(1, 2, 3)
+            .flatMap { Observable.just(it + 10, it + 20) }
             .subscribe(UnitObserver(subject))
     }
 
@@ -74,7 +74,7 @@ class TransformingObservables {
                     .map { "$ball<>" }
                     .take(2)
             }
-            .subscribe(UnitObserver())
+            .subscribe(UnitObserver(subject))
         Thread.sleep(10 * 1000)
 
         subject = "switchMap"
@@ -88,8 +88,8 @@ class TransformingObservables {
                     .map { "$ball<>" }
                     .take(2)
             }
-            .subscribe(UnitObserver())
-        Thread.sleep(10 * 1000)
+            .subscribe(UnitObserver(subject))
+        Thread.sleep(5 * 1000)
     }
 
     // todo 모르겠어요
@@ -103,9 +103,6 @@ class TransformingObservables {
 
     fun reduceTest() {
         val subject = "reduce"
-
-//        val observable: Maybe<Int> = Observable.just(1)
-//            .filter { it > 1 }
         val observable: Maybe<Int> = Observable.just(1,2,3,4,5)
             .reduce { item1, item2 -> item1 * item2 }
         observable.subscribe(UnitMaybeObserver(subject))
