@@ -1,5 +1,6 @@
 package com.exmp.rx.observer
 
+import com.exmp.rx.Util
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 
@@ -14,13 +15,13 @@ class UnitObserver(var subject: String = "") : Observer<Any?> {
                 val it = data.iterator()
                 while (it.hasNext()) {
                     val d = it.next()
-                    System.out.println("$subject onNext : $d")
+                    System.out.println("${Util.getTime()} | $subject onNext : $d")
                 }
             }
             is Array<*> -> for (d in data) {
-                System.out.println("$subject onNext : $d")
+                System.out.println("${Util.getTime()} | $subject onNext : $d")
             }
-            else -> System.out.println("$subject onNext : $data")
+            else -> System.out.println("${Util.getTime()} | $subject onNext : $data")
         }
     }
 
