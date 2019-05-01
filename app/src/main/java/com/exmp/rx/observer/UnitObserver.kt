@@ -26,7 +26,7 @@ class UnitObserver(var subject: String = "") : Observer<Any?> {
     }
 
     override fun onComplete() {
-        System.out.println("$subject onComlete!")
+        System.out.println("${Util.getTime()} | $subject completed\n")
     }
 
     override fun onError(e: Throwable) {

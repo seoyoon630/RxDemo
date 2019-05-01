@@ -6,7 +6,7 @@ import java.util.*
 class Util {
     companion object {
         fun showStartTime(subject: String = "") {
-            System.out.println("$subject 시작시간 = ${getTime()}")
+            System.out.println("${getTime()} | $subject start")
         }
 
         fun getTime(): String {
