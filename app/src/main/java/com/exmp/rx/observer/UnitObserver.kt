@@ -15,24 +15,21 @@ class UnitObserver(var subject: String = "") : Observer<Any?> {
                 val it = data.iterator()
                 while (it.hasNext()) {
                     val d = it.next()
-                    System.out.println("$subject : $d\t(${Util.getStartTime()} )")
+                    System.out.println("${Util.getTime()} | $subject onNext : $d")
                 }
             }
             is Array<*> -> for (d in data) {
-                System.out.println("$subject : $d\t${Util.getStartTime()} ")
+                System.out.println("${Util.getTime()} | $subject onNext : $d")
             }
-            else -> System.out.println("$subject : $data\t${Util.getStartTime()} ")
+            else -> System.out.println("${Util.getTime()} | $subject onNext : $data")
         }
     }
 
     override fun onComplete() {
-        System.out.println("$subject onComlete!")
+        System.out.println("${Util.getTime()} | $subject completed\n")
     }
 
     override fun onError(e: Throwable) {
-        System.out.println("$subject onError : ${e.message}\n")
-        for (stackTraceElement in e.stackTrace) {
-            System.out.println("$stackTraceElement")
-        }
+        System.out.println("$subject onError : ${e.message}\n${e.stackTrace}")
     }
 }

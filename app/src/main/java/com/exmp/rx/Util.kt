@@ -5,11 +5,11 @@ import java.util.*
 
 class Util {
     companion object {
-        fun showStartTime(subject: String = "", prefix : String = "시작시간") {
-            System.out.println("$subject $prefix = ${getStartTime()}")
+        fun showStartTime(subject: String = "") {
+            System.out.println("${getTime()} | $subject start")
         }
 
-        fun getStartTime() : String{
+        fun getTime(): String {
             val sdf = SimpleDateFormat("hh:mm:ss.SSS", Locale.getDefault())
             return sdf.format(System.currentTimeMillis())
         }
